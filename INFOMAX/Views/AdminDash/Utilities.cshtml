@@ -1,0 +1,244 @@
+﻿@model INFOMAX.DB_Context.PageMetaDetail
+@using System.Web.Optimization;
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Settings</h2>
+
+<br /><br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+      <div class="wrapper">
+          @using (Html.BeginForm())
+          {
+              @Html.AntiForgeryToken()
+
+          <div class="form-horizontal">
+              <h4>Page MetaDetails</h4>
+              <hr />
+              @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+              <div class="form-group">
+                  Select Page
+                  <div class="col-md-10">
+                      @Html.DropDownList("MenuPage", (SelectList)ViewBag.var1, "Choose Page")
+                      @Html.ValidationMessageFor(model => model.PageUrl, "", new { @class = "text-danger" })
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                  <div class="col-md-10">
+                      @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                      @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  @Html.LabelFor(model => model.MetaKeywords, htmlAttributes: new { @class = "control-label col-md-2" })
+                  <div class="col-md-10 ">
+                      @Html.EditorFor(model => model.MetaKeywords, new { htmlAttributes = new { @class = "form-control" } })
+                      @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  @Html.LabelFor(model => model.MetaDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                  <div class="col-md-10">
+                      @Html.EditorFor(model => model.MetaDescription, new { htmlAttributes = new { @class = "form-control", row = "5" } })
+                      @Html.ValidationMessageFor(model => model.MetaDescription, "", new { @class = "text-danger" })
+                  </div>
+              </div>
+              <label for="inline-radio1" class="m-l-100">
+                  <input type="checkbox" id="inline-check" name="Check" class="form-check-input" />  &nbsp;Assign to All
+              </label>
+              <br />
+              <hr />
+              <br />
+
+              <div class="section__content section__content--p30">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-lg-6">
+
+                              <div class="card card-info card-outline">
+                                  <div class="card-body card-block">
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Mail Link
+                                          </div>
+
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fa fa-envelope"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="Maillink" placeholder="Username" class="form-control">
+
+                                          </div>
+
+                                      </div>
+
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Twitter Link
+                                          </div>
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fab fa-twitter"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="twlink" placeholder="Username" class="form-control">
+
+                                          </div>
+                                      </div>
+
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Youtube Link
+                                          </div>
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fab fa-youtube"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="ytlink" placeholder="Username" class="form-control">
+
+                                          </div>
+                                      </div>
+
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Whatsapp Link
+                                          </div>
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fab fa-whatsapp"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="wplink" placeholder="Username" class="form-control">
+
+                                          </div>
+                                      </div>
+
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Copyright Text
+                                          </div>
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fa fa-copyright text-teal"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="copytext" placeholder="Username" class="form-control">
+
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-6">
+
+                              <div class="card card-info card-outline">
+                                  @*<div class="card-header">
+                                <strong>Settings</strong>
+                            </div>*@
+                                  <div class="card-body card-block">
+
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Facebook Link
+                                          </div>
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fab fa-facebook"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="Fblink" placeholder="Username" class="form-control">
+
+                                          </div>
+                                      </div>
+
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Instagram Link
+                                          </div>
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fab fa-instagram"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="iglink" placeholder="Username" class="form-control">
+
+                                          </div>
+                                      </div>
+
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Flicker Link
+                                          </div>
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fab fa-flickr"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="flrlink" placeholder="Username" class="form-control">
+
+                                          </div>
+                                      </div>
+                                      <div class="row form-group">
+                                          <div class="col col-md-10">
+                                              Linkedin Link
+                                          </div>
+                                          <div class="input-group">
+                                              <br />
+
+                                              <div class="input-group-addon">
+                                                  <i class="fab fa-linkedin"></i>
+                                              </div>
+                                              <input type="text" id="username2" name="lnlink" placeholder="Username" class="form-control">
+
+                                          </div>
+                                      </div>
+
+                                  </div>
+
+                              </div>
+
+                          </div>
+
+
+
+
+                      </div>
+                      @* <div class="card-footer">*@
+
+                      <button type="submit" value="Submit" name="action" class="btn btn-primary btn-sm">
+                          <i class="fa fa-dot-circle-o"></i> Submit
+                      </button>
+
+                      @*</div>*@
+                  </div>
+
+              </div>
+
+          </div>
+
+
+                 
+          }
+          </div>     
+
+          }

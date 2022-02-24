@@ -1,0 +1,75 @@
+﻿@using System.Data;
+@using System.Data.SqlClient;
+@model System.Data.DataTable
+    
+
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row" style="margin-left:30px;">
+    @using (Html.BeginForm("UpdateProduct", "AdminDash", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <br /><br /><br />
+        <div class="form-horizontal">
+            <h4>Update Product</h4>
+            <hr />
+            <img src="@Url.Content(@Model.Rows[0]["FilePath"].ToString())" width="150" height="150"  style="margin-left:250px;" class="rounded" alt="..." class="w-100">
+            <input name="ID" type="hidden" value="@Model.Rows[0]["P_ID"]" />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                Product
+                <div class="col-md-10">
+                    <input type="text" name="Product" value="@Model.Rows[0]["P_Name"]" />
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                Choose File
+                <div class="col-md-10">
+                    <div class="custom-file">
+                        <input type="file" id="fileupload" name="fileupload" style="color:black;" class="custom-file-input" />
+                        <label class="custom-file-label"></label>
+                    </div>
+                    @*@Html.TextBoxFor(model => model.file, "", new { @name= "fileupload", @type = "file" })
+                        @Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })*@
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                Product Description
+                <div class="col-md-10">
+                    <textarea asp-for="Body" name="Desc" type="text">@Model.Rows[0]["P_Desc"].ToString()</textarea>
+                    @* @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                Features
+                <div class="col-md-10">
+                    <textarea type="text" name="Features">@Model.Rows[0]["p_Features"].ToString()</textarea>
+                    @*@Html.ValidationMessageFor(model => model.Features, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                Price
+                <div class="col-md-10">
+                    <input type="text" name="Price" value="@Model.Rows[0]["P_Price"].ToString()" />
+                    @*//@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

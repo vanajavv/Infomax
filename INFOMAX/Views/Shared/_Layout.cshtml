@@ -1,0 +1,79 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Menu/style.css" rel="stylesheet" />
+    <script src="~/Content/Menu/index.js"></script>
+    @{
+        string currentUrl = Url.RequestContext.RouteData.Values["controller"] + "/" + Url.RequestContext.RouteData.Values["action"];
+        @(Html.Raw(INFOMAX.Models.PageMetaDetails.UpdateMetaDetails(currentUrl)));
+    }
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+
+                <br />
+
+                @* @Html.ActionLink("Infomax", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @* <ul>*@
+                    @{
+                        if (ViewBag.category.Rows != null)
+                        {
+                            foreach (System.Data.DataRow dr in ViewBag.category.Rows)
+                            {
+                                <li>
+                                    <a href='#'>@dr["Main_Menu"]</a>
+                                    @{
+                                        ((INFOMAX.Controllers.HomeController)this.ViewContext.Controller).get_Submenu(Convert.ToInt32(dr["Menu_id"]));
+                                    }
+                                    <ul>
+                                        @{
+                                            foreach (INFOMAX.Models.SubMenuModel subitem in Session["submenu"] as List<INFOMAX.Models.SubMenuModel>)
+                                            {
+                                                <li>
+                                                    <a href='#'>@subitem.Sub_Menu</a>
+                                                    @{
+                                                        ((INFOMAX.Controllers.HomeController)this.ViewContext.Controller).get_Submenu(Convert.ToInt32(subitem.SubMenu_id));
+                                                    }
+
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
+
+                        }
+                        else
+                        {
+                        }
+                    }
+                    @*</ul>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

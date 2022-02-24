@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="infomaxModelStoreContainer" CdmEntityContainer="infomaxEntities">
+    <EntitySetMapping Name="logins">
+      <EntityTypeMapping TypeName="infomaxModel.login">
+        <MappingFragment StoreEntitySet="login">
+          <ScalarProperty Name="Log_Id" ColumnName="Log_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="infomaxModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+          <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+          <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="P_Desc" ColumnName="P_Desc" />
+          <ScalarProperty Name="p_Features" ColumnName="p_Features" />
+          <ScalarProperty Name="P_Price" ColumnName="P_Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="infomaxModel.client">
+        <MappingFragment StoreEntitySet="clients">
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pages">
+      <EntityTypeMapping TypeName="infomaxModel.Page">
+        <MappingFragment StoreEntitySet="Pages">
+          <ScalarProperty Name="Page1" ColumnName="Page" />
+          <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PageMetaDetails">
+      <EntityTypeMapping TypeName="infomaxModel.PageMetaDetail">
+        <MappingFragment StoreEntitySet="PageMetaDetail">
+          <ScalarProperty Name="copytext" ColumnName="copytext" />
+          <ScalarProperty Name="lnlink" ColumnName="lnlink" />
+          <ScalarProperty Name="prlink" ColumnName="prlink" />
+          <ScalarProperty Name="wplink" ColumnName="wplink" />
+          <ScalarProperty Name="flrlink" ColumnName="flrlink" />
+          <ScalarProperty Name="ytlink" ColumnName="ytlink" />
+          <ScalarProperty Name="iglink" ColumnName="iglink" />
+          <ScalarProperty Name="twlink" ColumnName="twlink" />
+          <ScalarProperty Name="Fblink" ColumnName="Fblink" />
+          <ScalarProperty Name="Maillink" ColumnName="Maillink" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="services">
+      <EntityTypeMapping TypeName="infomaxModel.service">
+        <MappingFragment StoreEntitySet="service">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Ser_Desc" ColumnName="Ser_Desc" />
+          <ScalarProperty Name="S_Title" ColumnName="S_Title" />
+          <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

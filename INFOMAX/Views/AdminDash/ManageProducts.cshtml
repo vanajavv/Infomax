@@ -1,0 +1,99 @@
+﻿@using System.Data;
+@using System.Data.SqlClient;
+@model System.Data.DataTable
+
+@{
+    ViewBag.Title = "ManageProducts";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- DATA TABLE -->
+            <h3 class="title-5 m-b-35">Our Products</h3>
+            <hr style="font-weight:bolder " />
+
+            <div class="table-responsive table-responsive-data2">
+                @{
+                    if (Model.Rows.Count > 0)
+                    {
+                        <table id="example1" class="table table-data2">
+                            <thead>
+                                <tr>
+                                   
+                                    <th>
+
+                                    </th>
+                                    <th>Product</th>
+                                    @*<th>email</th>*@
+                                    <th>Description</th>
+                                    <th>Features</th>
+                                    @*<th>Price</th>*@
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRow dr in Model.Rows)
+                                {
+                                    <tr class="tr-shadow">
+                                       
+
+                                        <td >@dr["P_ID"]</td>
+
+
+                                        <td>
+
+                                            <img src="@Url.Content(@dr["FilePath"].ToString())" width="450" height="450" class="rounded" alt="..." class="w-100">
+                                        </td>
+                                        <td>@dr["P_Name"].ToString()</td>
+                                        @*<td>
+                                                <span class="block-email">lori@example.com</span>
+                                            </td>*@
+                                        <td class="desc">@dr["P_Desc"].ToString()</td>
+                                        <td>@dr["P_Features"].ToString()</td>
+                                        @*<td>
+                                                <span class="status--process">Processed</span>
+                                            </td>*@
+                                        <td>@dr["P_Price"].ToString()</td>
+                                        <td>
+                                            <div class="table-data-feature">
+                                                @*<button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                        <i class="zmdi zmdi-mail-send"></i>
+                                                    </button>*@
+
+                                                @*<button class="item" data-placement="top" title="Edit" data-toggle="modal" data-target="#myModal">
+                                                        <a href="@Url.Action("EditProduct", "AdminDash" , new { ID = @dr["P_ID"].ToString() })"><i class="zmdi zmdi-edit"></i></a>
+                                                    </button>*@
+                                                <button class="item" data-placement="top" title="Edit" data-toggle="modal" data-target="#myModal">
+                                                    <a href="@Url.Action("EditProduct", "AdminDash" , new { ID =@dr["P_ID"].ToString() })"><i class="zmdi zmdi-edit"></i></a>
+
+                                                </button>
+                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <a href="@Url.Action("DeleteProduct", "AdminDash" , new { ID = @dr["P_ID"] })" onclick="return confirm('Are you sure you wish to delete this Slider Image?');"><i class="zmdi zmdi-delete"></i></a>
+                                                    
+                                                </button>
+                                                @*<button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                        <i class="zmdi zmdi-more"></i>
+                                                    </button>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                }
+
+                                <tr class="spacer"></tr>
+
+                            </tbody>
+                        </table>
+                        
+                    }
+                }
+            </div>
+            <!-- END DATA TABLE -->
+        </div>
+    </div>
+
+</div>

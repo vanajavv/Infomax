@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "UploadSliderImage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#dataTable").dataTable();
+        });
+</script>
+<style>
+    .carousel-inner img {
+        width: 100%;
+        height: 350px;
+    }
+</style>
+
+<body>
+    <!-- BREADCRUMB-->
+    <section class="au-breadcrumb m-t-75">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="au-breadcrumb-content">
+                            <div class="au-breadcrumb-left">
+                                <span class="au-breadcrumb-span">You are here:</span>
+                                <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                    <li class="list-inline-item active">
+                                        <a href="#">Home</a>
+                                    </li>
+                                    <li class="list-inline-item seprate">
+                                        <span>/</span>
+                                    </li>
+                                    <li class="list-inline-item">Dashboard</li>
+                                </ul>
+                            </div>
+                            @*<button style="margin-left: 27px;margin-bottom:10px;" type="button" class="btn btn-primary rounded-0" data-toggle="modal" data-target="#myModal">
+                                    <i class="fa fa-plus-circle"></i> Add New
+                                </button>*@
+                            <button class="au-btn au-btn-icon au-btn--green" data-toggle="modal" data-target="#myModal">
+                                <i class="zmdi zmdi-plus"></i>add item
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END BREADCRUMB-->
+    <div class="container py-4">
+        <h3 class="text-center text-uppercase">Slider Images</h3>
+        <div id="demo" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner" role="listbox">
+                @{int i = 0;}
+                @foreach (var item in Model)
+                {
+                    i++;
+                    var active = i == 1 ? "active" : "";
+                    <div class="carousel-item @active">
+                        <img src="@Url.Content(@item.FilePath)" alt="">
+                    </div>
+                }
+            </div>
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                @*<h6 class="text-uppercase">Image List</h6>*@
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <br /><br />
+                    <button style="margin-left: 27px;margin-bottom:10px;" class="btn btn-primary rounded-0">
+                        Image List
+                    </button>
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Upload New Slider Image</h4>
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("UploadSliderImage", "AdminDash", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+
+                                        <div class="form-group">
+                                            <label>Choose File:</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" id="fileupload" name="fileupload" style="color:black;" class="custom-file-input" />
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <input type="submit" id="btnUpload" class="btn btn-secondary" value="Upload" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="dataTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>File Size(KB)</th>
+                            <th>Images</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@item.FileSize</td>
+                                <td>
+                                    <img src="@Url.Content(@item.FilePath)" alt="" width="80" height="60" class="img-thumbnail" />
+
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", "AdminDash" , new { ID = @item.ID })" onclick="return confirm('Are you sure you wish to delete this Slider Image?');"><i class='fas fa-trash-alt' style='font-size:20px;color:dodgerblue'></i></a>
+                                    @*@Html.ActionLink("| Delete", "Delete", new { ID = @item.ID, @class = "fa fa-trash-o", @style = "font-size:48px;color:red" }, new { onclick = "return confirm('Are you sure you wish to delete this Slider Image?');" })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+

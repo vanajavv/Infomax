@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Req_Demo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .error
+    {
+        color:red;
+    }
+</style>
+@using (Html.BeginForm("Req_Demo", "Home", FormMethod.Post))
+{
+    <div class="card">
+        <div class="card-header">
+            <strong>Request Demo</strong>
+        </div>
+
+
+        <div class="card-body card-block">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="txtName" name="Name" required placeholder="Name" class="form-control">
+                         @*<small class="form-text text-muted error">   eg:John</small>*@
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="email-input" class=" form-control-label">Email</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="email" required id="txtEmail" name="Email" placeholder="abc@example.com" class="form-control">
+                        @*<small class="help-block form-text">Please enter your email</small>*@
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="password-input" class=" form-control-label">Contact</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="number" id="txtContact" required name="Contact" placeholder="(987)(7678964)" class="form-control">
+                        @*<small class="help-block form-text">Please enter a complex password</small>*@
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="disabled-input" class=" form-control-label">Subject</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="txtSubject" value="Request For Demo" required name="Subject" placeholder="Subject" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="textarea-input" class=" form-control-label">Message</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <textarea name="Message" required id="taMessage" rows="9" placeholder="Content..." class="form-control"></textarea>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa fa-dot-circle-o"></i> Submit
+            </button>
+            <button type="reset" class="btn btn-danger btn-sm">
+                <i class="fa fa-ban"></i> Reset
+            </button>
+        </div>
+    </div>
+    //Modal Popup
+    <div id="MyPopup" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    @*<button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>*@
+
+                    <h4 class="modal-title">
+                        <span id="title" style="color:blue; font-style:bold; font-variant-caps:titling-caps;"></span>
+                    </h4>
+                    <button id='closeModal' type="button" class="close" data-bs-dismiss="modal"> &times;</button>
+                </div>
+                <div class="modal-body">
+                    <span id="lblError"></span>
+                </div>
+                <div class="modal-footer">
+                    <button id='closeModal' type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    @* <input type="button" id="btnClosePopup" value="Close" class="btn btn-danger" data-dismiss="modal" />*@
+                </div>
+            </div>
+        </div>
+    </div>
+    if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#title").html('@Html.Raw(ViewBag.title)');
+                $("#lblError").html('@Html.Raw(ViewBag.Message)');
+                $("#MyPopup").modal("show");
+            };
+        </script>
+    }
+
+}

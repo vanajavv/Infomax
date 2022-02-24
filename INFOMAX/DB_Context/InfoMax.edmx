@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="infomaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'infomax.dbo.clients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+          <Property Name="image" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="Log_Id" />
+          </Key>
+          <Property Name="Log_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="PageMetaDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageUrl" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="100" />
+          <Property Name="MetaDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="Maillink" Type="nvarchar" MaxLength="500" />
+          <Property Name="Fblink" Type="nvarchar" MaxLength="500" />
+          <Property Name="twlink" Type="nvarchar" MaxLength="500" />
+          <Property Name="iglink" Type="nvarchar" MaxLength="500" />
+          <Property Name="ytlink" Type="nvarchar" MaxLength="500" />
+          <Property Name="flrlink" Type="nvarchar" MaxLength="500" />
+          <Property Name="wplink" Type="nvarchar" MaxLength="500" />
+          <Property Name="prlink" Type="nvarchar" MaxLength="500" />
+          <Property Name="lnlink" Type="nvarchar" MaxLength="500" />
+          <Property Name="copytext" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'infomax.dbo.Pages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Pages">
+          <Key>
+            <PropertyRef Name="Page_ID" />
+          </Key>
+          <Property Name="Page_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Page" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="FileSize" Type="int" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="100" />
+          <Property Name="P_Desc" Type="nvarchar(max)" />
+          <Property Name="p_Features" Type="nvarchar(max)" />
+          <Property Name="P_Price" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'infomax.dbo.service' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="S_Title" Type="varchar" MaxLength="500" />
+          <Property Name="Ser_Desc" Type="varchar(max)" />
+          <Property Name="Image" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="infomaxModelStoreContainer">
+          <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageMetaDetail" EntityType="Self.PageMetaDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clients" EntityType="Self.clients" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [clients].[id] AS [id], 
+    [clients].[Name] AS [Name], 
+    [clients].[image] AS [image]
+    FROM [dbo].[clients] AS [clients]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Pages" EntityType="Self.Pages" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Pages].[Page_ID] AS [Page_ID], 
+    [Pages].[Page] AS [Page]
+    FROM [dbo].[Pages] AS [Pages]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="service" EntityType="Self.service" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [service].[S_ID] AS [S_ID], 
+    [service].[S_Title] AS [S_Title], 
+    [service].[Ser_Desc] AS [Ser_Desc], 
+    [service].[Image] AS [Image]
+    FROM [dbo].[service] AS [service]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="infomaxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="Log_Id" />
+          </Key>
+          <Property Name="Log_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileSize" Type="Int32" />
+          <Property Name="FilePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="P_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="p_Features" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_Price" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="infomaxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="logins" EntityType="Self.login" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="clients" EntityType="infomaxModel.client" />
+          <EntitySet Name="Pages" EntityType="infomaxModel.Page" />
+          <EntitySet Name="PageMetaDetails" EntityType="infomaxModel.PageMetaDetail" />
+          <EntitySet Name="services" EntityType="infomaxModel.service" />
+        </EntityContainer>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Page_ID" />
+          </Key>
+          <Property Name="Page_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Page1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PageMetaDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Maillink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Fblink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="twlink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="iglink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ytlink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="flrlink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="wplink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="prlink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="lnlink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="copytext" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="S_Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Ser_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="infomaxModelStoreContainer" CdmEntityContainer="infomaxEntities">
+          <EntitySetMapping Name="logins">
+            <EntityTypeMapping TypeName="infomaxModel.login">
+              <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="Log_Id" ColumnName="Log_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="infomaxModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="P_Desc" ColumnName="P_Desc" />
+                <ScalarProperty Name="p_Features" ColumnName="p_Features" />
+                <ScalarProperty Name="P_Price" ColumnName="P_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="infomaxModel.client">
+              <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="infomaxModel.Page">
+              <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="Page1" ColumnName="Page" />
+                <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageMetaDetails">
+            <EntityTypeMapping TypeName="infomaxModel.PageMetaDetail">
+              <MappingFragment StoreEntitySet="PageMetaDetail">
+                <ScalarProperty Name="copytext" ColumnName="copytext" />
+                <ScalarProperty Name="lnlink" ColumnName="lnlink" />
+                <ScalarProperty Name="prlink" ColumnName="prlink" />
+                <ScalarProperty Name="wplink" ColumnName="wplink" />
+                <ScalarProperty Name="flrlink" ColumnName="flrlink" />
+                <ScalarProperty Name="ytlink" ColumnName="ytlink" />
+                <ScalarProperty Name="iglink" ColumnName="iglink" />
+                <ScalarProperty Name="twlink" ColumnName="twlink" />
+                <ScalarProperty Name="Fblink" ColumnName="Fblink" />
+                <ScalarProperty Name="Maillink" ColumnName="Maillink" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services">
+            <EntityTypeMapping TypeName="infomaxModel.service">
+              <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Ser_Desc" ColumnName="Ser_Desc" />
+                <ScalarProperty Name="S_Title" ColumnName="S_Title" />
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

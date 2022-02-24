@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "UploadSliderImage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#dataTable").dataTable();
+    });
+</script>
+@*<style>
+        .carousel-inner img {
+            width: 100%;
+            height: 350px;
+        }
+    </style>*@
+
+<body>
+    <!-- BREADCRUMB-->
+    <section class="au-breadcrumb m-t-75">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="au-breadcrumb-content">
+                           <div class="au-breadcrumb-left">
+                            
+                            </div>
+                         
+                            <button class="au-btn au-btn-icon au-btn--green" data-toggle="modal" data-target="#myModal">
+                                <i class="zmdi zmdi-plus"></i>add item
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END BREADCRUMB-->
+    <div class="container py-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                @*<h6 class="text-uppercase">Image List</h6>*@
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <br /><br />
+                    <button style="margin-left: 27px;margin-bottom:10px;" class="btn btn-primary rounded-0">
+                        Client List
+                    </button>
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Upload New Slider Image</h4>
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("Clients", "AdminDash", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group">
+                                            Client
+                                            @*@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <input type="text" required name="Name" class="form-control" />
+                                                @*@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Choose File:</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" id="fileupload" required name="image" style="color:black;" class="custom-file-input" />
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" id="btnUpload" class="btn btn-primary" value="Save" />
+                                            @*<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>*@
+                                        </div>
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="dataTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            @*<th>File Size(KB)</th>*@
+                            <th>Images</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                @*<td>@item.FileSize</td>*@
+                                <td>
+                                    <img src="@Url.Content(@item.image)" alt="" width="80" height="60" class="img-thumbnail" />
+
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeleteClient", "AdminDash" , new { ID = @item.ID })" onclick="return confirm('Are you sure you wish to delete this Client?');"><i class='fas fa-trash-alt' style='font-size:20px;color:dodgerblue'></i></a>
+                                    @*@Html.ActionLink("| Delete", "Delete", new { ID = @item.ID, @class = "fa fa-trash-o", @style = "font-size:48px;color:red" }, new { onclick = "return confirm('Are you sure you wish to delete this Slider Image?');" })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+

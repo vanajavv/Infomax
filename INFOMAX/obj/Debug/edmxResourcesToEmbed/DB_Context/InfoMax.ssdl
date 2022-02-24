@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="infomaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'infomax.dbo.clients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="200" />
+    <Property Name="image" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="login">
+    <Key>
+      <PropertyRef Name="Log_Id" />
+    </Key>
+    <Property Name="Log_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="PageMetaDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="MetaKeywords" Type="nvarchar" MaxLength="100" />
+    <Property Name="MetaDescription" Type="nvarchar" MaxLength="100" />
+    <Property Name="Maillink" Type="nvarchar" MaxLength="500" />
+    <Property Name="Fblink" Type="nvarchar" MaxLength="500" />
+    <Property Name="twlink" Type="nvarchar" MaxLength="500" />
+    <Property Name="iglink" Type="nvarchar" MaxLength="500" />
+    <Property Name="ytlink" Type="nvarchar" MaxLength="500" />
+    <Property Name="flrlink" Type="nvarchar" MaxLength="500" />
+    <Property Name="wplink" Type="nvarchar" MaxLength="500" />
+    <Property Name="prlink" Type="nvarchar" MaxLength="500" />
+    <Property Name="lnlink" Type="nvarchar" MaxLength="500" />
+    <Property Name="copytext" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'infomax.dbo.Pages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Pages">
+    <Key>
+      <PropertyRef Name="Page_ID" />
+    </Key>
+    <Property Name="Page_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Page" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="P_ID" />
+    </Key>
+    <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="P_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="FileSize" Type="int" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="100" />
+    <Property Name="P_Desc" Type="nvarchar(max)" />
+    <Property Name="p_Features" Type="nvarchar(max)" />
+    <Property Name="P_Price" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'infomax.dbo.service' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="S_ID" />
+    </Key>
+    <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="S_Title" Type="varchar" MaxLength="500" />
+    <Property Name="Ser_Desc" Type="varchar(max)" />
+    <Property Name="Image" Type="varchar(max)" />
+  </EntityType>
+  <EntityContainer Name="infomaxModelStoreContainer">
+    <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PageMetaDetail" EntityType="Self.PageMetaDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clients" EntityType="Self.clients" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [clients].[id] AS [id], 
+    [clients].[Name] AS [Name], 
+    [clients].[image] AS [image]
+    FROM [dbo].[clients] AS [clients]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Pages" EntityType="Self.Pages" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Pages].[Page_ID] AS [Page_ID], 
+    [Pages].[Page] AS [Page]
+    FROM [dbo].[Pages] AS [Pages]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="service" EntityType="Self.service" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [service].[S_ID] AS [S_ID], 
+    [service].[S_Title] AS [S_Title], 
+    [service].[Ser_Desc] AS [Ser_Desc], 
+    [service].[Image] AS [Image]
+    FROM [dbo].[service] AS [service]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
